@@ -1,10 +1,11 @@
 import * as actionTypes from "../constants/productConstants";
 import axios from "axios";
+import { products as data, products } from "../../data/products";
 
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
-    const { data } = await axios.get("/api/products");
+    // const { data } = await axios.get("/api/products");
 
     dispatch({
       type: actionTypes.GET_PRODUCTS_SUCCESS,
@@ -14,7 +15,7 @@ export const getProducts = () => async (dispatch) => {
     dispatch({
       type: actionTypes.GET_PRODUCTS_FAIL,
       payload:
-        error.response && error.response.data.message 
+        error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
@@ -24,7 +25,9 @@ export const getProducts = () => async (dispatch) => {
 export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/products/${id}`);
+    // const { data } = await axios.get(`/api/products/${id}`);
+    const data = products.find(product => product.id == id);
+
 
     dispatch({
       type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS,

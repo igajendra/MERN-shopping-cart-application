@@ -7,7 +7,7 @@ import Product from "../components/Product";
 import { getProducts as listProducts } from "../redux/actions/productactions";
 
 const HomeScreen = () => {
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     const getProducts = useSelector((state) => state.getProducts);
     const { products, loading, error } = getProducts;
@@ -25,7 +25,7 @@ const HomeScreen = () => {
                 ) : error ? (
                     <h2>{error}</h2>
                 ) : (
-                    products.map((product) => <Product  key={product._id} productId={product._id} name={product.name} price={product.price} description={product.description} imageUrl={product.imageUrl} />)
+                    products.map((product) => <Product key={product.id} productId={product.id} name={product.name} price={product.price} description={product.description} imageUrl={product.imageUrl} />)
                 )}
             </div>
         </div>
